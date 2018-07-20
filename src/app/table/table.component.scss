@@ -1,0 +1,16 @@
+// test styles remove it
+.rwm-table {
+  &-head {
+    &__row {
+      font-weight: bold;
+    }
+    &__summary-row {
+      background-color: yellow;
+    }
+  }
+}
+
+td {
+  border: 1px solid grey;
+  padding: 10px;
+}

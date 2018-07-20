@@ -1,0 +1,30 @@
+<h1>EDM - NG2</h1>
+<ng-template #decimalTemplate let-data>
+  There is decimal {{data}}
+</ng-template>
+<ng-template #priceTemplate let-data>
+  There is price {{data}}
+  <h1>{{data | json}}
+  </h1>
+</ng-template>
+
+<ng-template #summaryTemplate let-data>
+  <h1>{{ data | json }}</h1>
+</ng-template>
+
+<ng-template #decimalPriceTemplate let-data>
+  <ng-container *ngFor="let row of data; let last = last">
+    There is decimal {{row.value1}}
+    <br>
+    <b>{{row.value2}}</b>
+    <ng-container *ngIf="!last">
+      <br><br>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #headerTemplate let-data>
+  <h1 style="color: red">{{data | uppercase}}</h1>
+</ng-template>
+
+<app-table [columns]="columns" [data]="data" (onChangeSort)="handleChangeSort($event)"></app-table>

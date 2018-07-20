@@ -1,15 +1,20 @@
-<p-table [columns]="cols" [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="10">
+<!-- <p-table [columns]="cols" [paginator]="true" [rows]="5" [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="10">
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th *ngFor="let col of columns">
                 {{col.header}}
             </th>
+            <th>Delete</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
+
         <tr [pSelectableRow]="rowData">
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
+            <td *ngFor="let col of columns" [pTooltip]="getTooltipdata(rowData)" appendTo="target" positionStyle="fixed" style="position: relative">
+              {{rowData[col.field]}}
+            </td>
+            <td>
+              <button type="button" pButton icon="pi pi-trash" (click)="deleteItem(rowData)"></button>
             </td>
         </tr>
     </ng-template>
@@ -17,11 +22,12 @@
     <ng-template pTemplate="summary" let-rowData>
         <div style="text-align:left">
             <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
+            <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
         </div>
     </ng-template>
 </p-table>
 
-<p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [closable]="true" [width]="300">
+<p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" maximizable="true" [modal]="true" [closable]="true" [width]="300">
     <div class="ui-g ui-fluid" *ngIf="car">
         <div class="ui-g-4"><label for="vin">Vin</label></div>
         <div class="ui-g-8"><input pInputText id="vin" [(ngModel)]="car.vin" /></div>
@@ -42,3 +48,37 @@
         </div>
     </p-footer>
 </p-dialog>
+
+<rwm-edm></rwm-edm> -->
+
+<!-- <app-dynamic-form [questions]="questions"></app-dynamic-form> -->
+
+<!-- <p><span>"{{evilTitle}}" is the <i>interpolated</i> evil title.</span></p>
+<p>"<span [innerText]="evilTitle"></span>" is the <i>property bound</i> evil title.</p> -->
+
+<!-- <app-sizer [(size)]="fontSize"></app-sizer> -->
+<!-- <p>{{fontSize}}</p> -->
+<!-- <input type="text" appRainbow> -->
+<div [formGroup]="model">
+  <div class="control">
+    <p-autoComplete
+      formControlName="name"
+      [(ngModel)]="text"
+      [dropdown]="true"
+      [suggestions]="results"
+      (completeMethod)="search($event)"
+      emptyMessage="No Matches" placeholder="Benchmark Name"
+      ></p-autoComplete>
+  </div>
+
+  <div class="control">
+    <p-autoComplete
+      formControlName="drinks"
+      [dropdown]="true"
+      [suggestions]="drinks"
+      (completeMethod)="searchDrink($event)"
+      [disabled]="true"
+      ></p-autoComplete>
+  </div>
+  <button [disabled]="!model.valid">Submit</button>
+</div>

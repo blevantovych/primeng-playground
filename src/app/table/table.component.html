@@ -1,0 +1,48 @@
+<table class="rwm-table">
+  <thead class="rwm-table-head">
+    <tr class="rwm-table-head__row">
+      <th *ngFor="let column of columns" [ngStyle]="{'width.%': column.options.width}">
+        <button type="button" *ngIf="column.options.sort; else headWithoutSortTemplate"
+                (click)="sort(column.options.serviceParamName)">
+          <ng-container *ngTemplateOutlet="headCellTemplate; context: {$implicit: column}"></ng-container>
+          <span *ngIf="sortFields[column.options.serviceParamName] === TableSortEnum.DESC">↓</span>
+          <span *ngIf="sortFields[column.options.serviceParamName] === TableSortEnum.ASC">↑</span>
+        </button>
+        <ng-template #headWithoutSortTemplate>
+          <ng-container *ngTemplateOutlet="headCellTemplate; context: {$implicit: column}"></ng-container>
+        </ng-template>
+      </th>
+    </tr>
+    <tr class="rwm-table-head__summary-row">
+      <th *ngFor="let column of columns">
+        <ng-container *ngIf="column.options.summaryTemplate; else summaryWithoutTemplate">
+          <div *ngTemplateOutlet="column.options.summaryTemplate; context: {$implicit: column.summary}"></div>
+        </ng-container>
+        <ng-template #summaryWithoutTemplate>
+          {{column.summary}}
+        </ng-template>
+      </th>
+    </tr>
+  </thead>
+  <tbody class="rwm-table-body">
+    <tr *ngFor="let rowData of data" class="rwm-table-body__row">
+      <td *ngFor="let column of columns">
+        <ng-container *ngIf="column.options.bodyTemplate; else bodyCellWithoutTemplate">
+          <div *ngTemplateOutlet="column.options.bodyTemplate; context: {$implicit: rowData[column.key]}"></div>
+        </ng-container>
+        <ng-template #bodyCellWithoutTemplate>
+          {{rowData[column.key]}}
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #headCellTemplate let-column>
+  <ng-container *ngIf="column.options.headTemplate; else headWithoutTemplate">
+    <div *ngTemplateOutlet="column.options.headTemplate; context: {$implicit: column.title}"></div>
+  </ng-container>
+  <ng-template #headWithoutTemplate>
+    {{column.title}}
+  </ng-template>
+</ng-template>
