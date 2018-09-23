@@ -1,33 +1,21 @@
-<!-- <p-table [columns]="cols" [paginator]="true" [rows]="5" [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="10">
-    <ng-template pTemplate="header" let-columns>
+<p-table [value]="cars" [paginator]="true" [rows]="5" [first]="10">
+    <ng-template pTemplate="header">
         <tr>
-            <th *ngFor="let col of columns">
+            <th *ngFor="let col of cols">
                 {{col.header}}
             </th>
-            <th>Delete</th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-
-        <tr [pSelectableRow]="rowData">
-            <td *ngFor="let col of columns" [pTooltip]="getTooltipdata(rowData)" appendTo="target" positionStyle="fixed" style="position: relative">
-              {{rowData[col.field]}}
-            </td>
-            <td>
-              <button type="button" pButton icon="pi pi-trash" (click)="deleteItem(rowData)"></button>
+    <ng-template pTemplate="body" let-car>
+        <tr>
+            <td *ngFor="let col of cols">
+                    {{car[col.field]}}
             </td>
         </tr>
-    </ng-template>
-
-    <ng-template pTemplate="summary" let-rowData>
-        <div style="text-align:left">
-            <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
-            <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
-        </div>
     </ng-template>
 </p-table>
 
-<p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" maximizable="true" [modal]="true" [closable]="true" [width]="300">
+<!-- <p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" maximizable="true" [modal]="true" [closable]="true" [width]="300">
     <div class="ui-g ui-fluid" *ngIf="car">
         <div class="ui-g-4"><label for="vin">Vin</label></div>
         <div class="ui-g-8"><input pInputText id="vin" [(ngModel)]="car.vin" /></div>

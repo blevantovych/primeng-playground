@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import {PaginatorModule} from 'primeng/paginator';
+
 import { DialogModule } from 'primeng/dialog';
 import {TooltipModule} from 'primeng/tooltip';
 import { AutoCompleteModule } from 'primeng/autocomplete';
@@ -37,6 +39,7 @@ import {RainbowDirective } from './rainbow.directive';
         InputTextModule,
         DialogModule,
         ButtonModule,
+        PaginatorModule,
         TooltipModule,
         ReactiveFormsModule,
         AutoCompleteModule

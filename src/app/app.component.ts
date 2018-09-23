@@ -15,6 +15,37 @@ export class PrimeCar implements Car {
     providers: [CarService, QuestionService]
 })
 export class AppComponent implements OnInit {
+
+  cols = [
+    { field: 'vin', header: 'Vin' },
+    { field: 'year', header: 'Year' },
+    { field: 'brand', header: 'Brand' },
+    { field: 'color', header: 'Color' }
+  ];
+
+  cars = [
+    {vin: 1, year: 2000, brand: 3, color: 4},
+    {vin: 1, year: 2001, brand: 3, color: 4},
+    {vin: 1, year: 2002, brand: 3, color: 4},
+    {vin: 1, year: 2003, brand: 3, color: 4},
+    {vin: 1, year: 2004, brand: 3, color: 4},
+    {vin: 1, year: 2005, brand: 3, color: 4},
+    {vin: 1, year: 2006, brand: 3, color: 4},
+    {vin: 1, year: 2007, brand: 3, color: 4},
+    {vin: 1, year: 2008, brand: 3, color: 4},
+    {vin: 1, year: 2009, brand: 3, color: 4},
+    {vin: 1, year: 2010, brand: 3, color: 4},
+    {vin: 1, year: 2011, brand: 3, color: 4},
+    {vin: 1, year: 2012, brand: 3, color: 4},
+    {vin: 1, year: 2013, brand: 3, color: 4},
+    {vin: 1, year: 2014, brand: 3, color: 4},
+    {vin: 1, year: 2015, brand: 3, color: 4},
+    {vin: 1, year: 2016, brand: 3, color: 4},
+    {vin: 1, year: 2017, brand: 3, color: 4},
+    {vin: 1, year: 2018, brand: 3, color: 4},
+    {vin: 1, year: 2019, brand: 3, color: 4},
+  ]
+
     model = new FormGroup({
       name: new FormControl('', [Validators.required]),
       drinks: new FormControl('')
